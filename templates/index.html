@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiation Impact Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="RIP.jpg" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Project</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="bg2.jpg" alt="Background Image">
+        <div class="hero-content">
+            <h1>Radiation Impact Predictor</h1>
+            <p>Enter the wavelength and irradiance to determine if the radiation is harmful.</p>
+            <a href="#prediction-form" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section id="home">
+            <h1>Welcome to the Radiation Impact Predictor</h1>
+            <p>Enter the wavelength and irradiance to determine if the radiation is harmful.</p>
+            <form id="prediction-form">
+                <div class="form-group">
+                    <label for="wavelength">Wavelength:</label>
+                    <input type="text" id="wavelength" name="wavelength" required>
+                </div>
+                <div class="form-group">
+                    <label for="irradiance">Irradiance:</label>
+                    <input type="text" id="irradiance" name="irradiance" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result"></div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about">
+            <h1>About the Project</h1>
+            <p>This project aims to predict the harmful effects of space radiation on satellites and astronauts.</p>
+            <p>Our team of experts is dedicated to making space travel safer through innovative technology.</p>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact">
+            <h1>Contact Us</h1>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="contact-details">
+                <p>Email: info@radiationpredictor.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <p>&copy; 2024 Radiation Impact Predictor. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
