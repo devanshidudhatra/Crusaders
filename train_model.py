@@ -42,17 +42,13 @@ required_data["Harmful_for_Astronauts"] = required_data.apply(Harmful_for_Astron
 # Save the processed data
 required_data.to_csv("required_data.csv", index=False)
 
-# Apply SMOTE to balance classes
-smote = SMOTE(random_state=42)
 X = required_data[['wavelength', 'irradiance_in_W/m2']]
 y_satellite = required_data['Harmful_for_Satellites']
 y_astronaut = required_data['Harmful_for_Astronauts']
-X_resampled, y_resampled = smote.fit_resample(X, y_satellite)
-X_resampled_ast, y_resampled_ast = smote.fit_resample(X, y_astronaut)
 
 # Split the data
-X_train_sat, X_test_sat, y_train_sat, y_test_sat = train_test_split(X_resampled, y_resampled, test_size=0.2, random_state=42)
-X_train_ast, X_test_ast, y_train_ast, y_test_ast = train_test_split(X_resampled_ast, y_resampled_ast, test_size=0.2, random_state=42)
+X_train_sat, X_test_sat, y_train_sat, y_test_sat = train_test_split(X, y_satellite, test_size=0.2, random_state=42)
+X_train_ast, X_test_ast, y_train_ast, y_test_ast = train_test_split(X, y_astronaut, test_size=0.2, random_state=42)
 
 # Train the models
 model_sat = LogisticRegression()
@@ -86,14 +82,3 @@ astronaut_safe_irradiance_range = (safe_astronaut_data['irradiance_in_W/m2'].min
 
 print(f"Satellite safe irradiance range: {satellite_safe_irradiance_range}")
 print(f"Astronaut safe irradiance range: {astronaut_safe_irradiance_range}")
-
-#  Load the dataset
-df = pd.read_csv('required_data.csv')  # Adjust the file path if needed
-
-# Calculate the mean of 'wavelength' and 'irradiance_in_W/m2'
-mean_wavelength = df['wavelength'].mean()
-mean_irradiance = df['irradiance_in_W/m2'].mean()
-
-# Print the results
-print(f"Mean Wavelength: {mean_wavelength}")
-print(f"Mean Irradiance: {mean_irradiance}")
