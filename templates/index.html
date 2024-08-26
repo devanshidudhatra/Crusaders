@@ -1,59 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damage Predictor</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Damage Predictor</h1>
-        <form id="predict-form">
-            <label for="wavelength">Wavelength (nm):</label>
-            <input type="number" id="wavelength" name="wavelength" step="0.01" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radiation Impact Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
 
-            <label for="irradiance">Irradiance (W/m²):</label>
-            <input type="number" id="irradiance" name="irradiance" step="0.01" required>
-
-            <button type="submit">Predict</button>
-        </form>
-
-        <div id="results" class="hidden">
-            <h2>Results</h2>
-            <p id="satellite-damage"></p>
-            <p id="satellite-precaution"></p>
-            <p id="astronaut-harm"></p>
-            <p id="astronaut-precaution"></p>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='images/rip.jpeg') }}" alt="Logo" />
         </div>
-    </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About Project</a></li>
+          <li><a href="#contact">Team</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <script>
-        document.getElementById('predict-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+    <!-- Hero Section -->
+    <section class="hero">
+      <img src="{{ url_for('static', filename='images/bg2.jpeg') }}" alt="Background Image" />
+      <div class="hero-content">
+        <h1>Radiation Impact Predictor</h1>
+        <p>
+          Assessing Harmful Effects of Space Radiation on Satellites and
+          Astronauts
+        </p>
+        <a href="#prediction-form" class="btn">Get Started</a>
+      </div>
+    </section>
 
-            const wavelength = document.getElementById('wavelength').value;
-            const irradiance = document.getElementById('irradiance').value;
+    <!-- Main Content -->
+    <main>
+      <section id="about">
+        <h1>About the Project</h1>
+        <p><strong> Problems : </strong></p>
+        <div class="main_box">
+          <div class="box">
+            Space radiation poses significant risks to both satellites and
+            astronauts.
+          </div>
+          <div class="box">
+            High levels of radiation can lead to equipment malfunctions,
+            degraded performance, and potential health hazards.
+          </div>
+          <div class="box">
+            The challenge is to accurately assess whether specific radiation
+            values, given as wavelength and irradiance, are harmful and to
+            predict their impact.
+          </div>
+          <div class="box">
+            Radiation can damage DNA, leading to cellular mutations and
+            increased risk of diseases.
+          </div>
+        </div>
+        <br />
+        <p>
+          <strong> Solutions : </strong>
+        </p>
+        <div class="main_box">
+          <div class="box box1">
+            Our solution is a predictive model that evaluates whether given
+            values of wavelength and irradiance are harmful to satellites and
+            astronauts.
+          </div>
+          <div class="box box1">
+            Harmful Radiation Prediction: Determine if specific wavelength and
+            irradiance values pose a risk to satellites and astronauts.
+          </div>
+          <div class="box box1">
+            Harmful Radiation Prediction: Determine if specific wavelength and
+            irradiance values pose a risk to satellites and astronauts.
+          </div>
+          <div class="box box1">
+            Health Impact Modeling: Provides insights into potential health
+            impacts for astronauts based on radiation exposure.
+          </div>
+        </div>
+        <br />
 
-            fetch('/predict', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ wavelength: wavelength, irradiance: irradiance })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('satellite-damage').textContent = 
-                    'Satellite Damage: ' + (data.satellite_damage ? 'Yes' : 'No');
-                document.getElementById('satellite-precaution').textContent = 
-                    'Satellite Precaution: ' + data.satellite_precaution;
-                document.getElementById('astronaut-harm').textContent = 
-                    'Astronaut Harm: ' + (data.astronaut_harm ? 'Yes' : 'No');
-                document.getElementById('astronaut-precaution').textContent = 
-                    'Astronaut Precaution: ' + data.astronaut_precaution;
-                document.getElementById('results').classList.remove('hidden');
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script>
-</body>
+        <p>
+          <strong>
+            Our team of experts is dedicated to making space travel safer
+            through innovative technology.</strong
+          >
+        </p>
+      </section>
+
+      <!-- Home Page -->
+      <section id="home">
+        <h1>Radiation Impact Predictor</h1>
+        <p>
+          Enter the wavelength and irradiance to determine if the radiation is
+          harmful.
+        </p>
+        <form id="prediction-form">
+          <div class="form-group">
+            <label for="wavelength">Wavelength:</label>
+            <input
+              type="number"
+              id="wavelength"
+              name="wavelength"
+              placeholder="Enter wavelength"
+            />
+          </div>
+          <div class="form-group">
+            <label for="irradiance">Irradiance:</label>
+            <input
+              type="number"
+              id="irradiance"
+              name="irradiance"
+              placeholder="Enter Irradiance"
+              required
+            />
+          </div>
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </form>
+        <div id="result"></div>
+      </section>
+
+      <!-- Contact Page -->
+      <section id="contact">
+        <h1>Contact Us</h1>
+        <form id="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+        <div id="contact-details">
+          <p>Email: info@radiationpredictor.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+      </div>
+      <p>&copy; 2024 Radiation Impact Predictor. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>
